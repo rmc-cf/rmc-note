@@ -21,7 +21,7 @@ const props = defineProps({
 })
 
 //右键菜单
-const contextmenu = async (event: MouseEvent) => {
+const contextmenu = async (event: MouseEvent,node) => {
   // 未选择是则返回 null
 const selectedKeys = await Contextmenu.open({
   clientX: event.clientX,
@@ -50,6 +50,7 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
   } else if (selectedKeys.includes('delete')) {
     console.log('删除');
   }
+  console.log(event.target.querySelector('[id]')?.id);
   
 }
 }
@@ -57,13 +58,13 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
 <template>
   <div v-if="isFetching">Loading...</div>
   <div v-else-if="error">Error: {{ error.message }}</div>
-  <Tree  draggable v-else :checkbox="checkbox" :data="data" @contextmenu.prevent="contextmenu">
+  <Tree  draggable v-else :checkbox="checkbox" :data="data"  @contextmenu.prevent="contextmenu">
     <template #prefix>
       <Icon :icon="PaperPlaneR"></Icon>
     </template>
     <template #label="{ node }">
       <!-- contenteditable=""  -->
-      <span >{{ node.data.label}}</span>
+      <span :id="node.data.id">{{ node.data.label}}</span>
       </template>
     <template #suffix>
       <Linker type="primary" @click.stop>
