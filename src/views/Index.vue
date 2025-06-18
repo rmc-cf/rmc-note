@@ -11,15 +11,16 @@ const { isFetching, error, data: folders } = useMyFetch('api/folder/').get()
 </script>
 <template>
        <div :class="nh.b()">
-              <Row :class="nh.be('row')" :gap="6">
-                     <Column :span="4" :md="5">
+              <Row :class="nh.be('row')" :gap="18">
+                     <Column :span="10" :md="6">
                             <div class="content">
                                  
                                    <RmcTree   :isFetching="isFetching" 
+                                  
     :error="error"  :checkbox="checkbox" :data="folders" />
                             </div>
                      </Column>
-                     <Column :span="6" :md="19">
+                     <Column :span="2" :md="18">
                             <div class="content">
                                    <Button type="info" @click="checkbox = !checkbox">
                                           Info
@@ -32,12 +33,8 @@ const { isFetching, error, data: folders } = useMyFetch('api/folder/').get()
 </template>
 <style lang="scss">
 .index {
-       min-width: 90vw;
-       min-height: 90vh;
-
        &__row {
               width: 100%;
-
        }
 }
 </style>

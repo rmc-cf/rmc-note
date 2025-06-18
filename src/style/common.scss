@@ -15,22 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#app{
+       padding: 20px;
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-#app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1280px;
-  padding: 2rem;
-  text-align: center;
 }

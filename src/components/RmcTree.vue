@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { PaperPlaneR } from '@vexip-ui/icons'
-import { Contextmenu } from 'vexip-ui'
+import { Contextmenu } from 'vexip-ui';
 const props = defineProps({
   isFetching: {
     type: Boolean,
@@ -60,16 +59,14 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
 <template>
   <div v-if="isFetching">Loading...</div>
   <div v-else-if="error">Error: {{ error.message }}</div>
-  <Tree  draggable v-else :checkbox="checkbox" :data="data"  @contextmenu.prevent="contextmenu">
-    <template #prefix>
-      <Icon :icon="PaperPlaneR"></Icon>
-    </template>
-    <template #label="{ node }">
+  <Tree  floor-select draggable v-else :checkbox="checkbox" :data="data"  @contextmenu.prevent="contextmenu">
+   
+    <template #label="{ data }">
       <!-- contenteditable=""  -->
-      <span :id="node.data.id">{{ node.data.label}}</span>
+      <span :id="data.id">{{data.label}}</span>
       </template>
-    <template #suffix>
-      <Linker type="primary" @click.stop>
+    <template #suffix="{data}">
+      <Linker type="primary" @click.stop v-if="data.type">
         Suffix
       </Linker>
     </template>
