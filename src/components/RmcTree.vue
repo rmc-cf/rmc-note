@@ -18,7 +18,7 @@ const props = defineProps({
     default: () => []
   }
 })
-
+const emit = defineEmits(['open']);
 //右键菜单
 const contextmenu = async (event: MouseEvent) => {
   // 未选择是则返回 null
@@ -55,11 +55,15 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
   
 }
 }
+const open = (data: any) => {
+  if(!data?.content) return
+  emit('open', data.content);
+};
 </script>
 <template>
   <div v-if="isFetching">Loading...</div>
   <div v-else-if="error">Error: {{ error.message }}</div>
-  <Tree  floor-select draggable v-else :checkbox="checkbox" :data="data"  @contextmenu.prevent="contextmenu">
+  <Tree @node-click="open" floor-select draggable v-else :checkbox="checkbox" :data="data"  @contextmenu.prevent="contextmenu">
    
     <template #label="{ data }">
       <!-- contenteditable=""  -->
