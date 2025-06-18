@@ -21,7 +21,7 @@ const props = defineProps({
 })
 
 //右键菜单
-const contextmenu = async (event: MouseEvent,node) => {
+const contextmenu = async (event: MouseEvent) => {
   // 未选择是则返回 null
 const selectedKeys = await Contextmenu.open({
   clientX: event.clientX,
@@ -50,7 +50,9 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
   } else if (selectedKeys.includes('delete')) {
     console.log('删除');
   }
-  console.log(event.target.querySelector('[id]')?.id);
+  if (event.target instanceof Element) {
+    console.log(event.target.querySelector('[id]')?.id);
+  }
   
 }
 }
