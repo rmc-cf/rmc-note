@@ -11,6 +11,7 @@
   "dependencies": {
     "@vexip-ui/bem-helper": "^1.1.0",
     "@vexip-ui/icons": "^1.2.1",
+    "@vueuse/core": "^13.3.0",
     "vexip-ui": "^2.3.30",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
