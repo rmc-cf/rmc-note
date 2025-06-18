@@ -57,7 +57,7 @@ if (selectedKeys && Array.isArray(selectedKeys)) {
 <template>
   <div v-if="isFetching">Loading...</div>
   <div v-else-if="error">Error: {{ error.message }}</div>
-  <Tree  draggable="" v-else :checkbox="checkbox" :data="data" @contextmenu.prevent="contextmenu">
+  <Tree  draggable v-else :checkbox="checkbox" :data="data" @contextmenu.prevent="contextmenu">
     <template #prefix>
       <Icon :icon="PaperPlaneR"></Icon>
     </template>
