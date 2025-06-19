@@ -5,12 +5,17 @@ import RmcTree from '../components/RmcTree.vue'
 import useMyFetch from '../hooks/useMyFetch'
 const nh = useBEM('index')
 const checkbox = ref(false)
-const { isFetching, error, data: folders } = 
+const { isFetching, error, data: folders , execute} = 
 useMyFetch('api/folder/').get().json();
 const content = ref('This is a content area where you can display additional information.');
 const open = (data: any) => {
        content.value = data
 };
+const reload = () => {
+  execute(); // 使用useMyFetch提供的execute方法重新获取数据
+};
+  execute(); // 使用useMyFetch提供的execute方法重新获取数据
+
 </script>
 <template>
        <!-- <div>{{ folders }}</div> -->
@@ -19,7 +24,7 @@ const open = (data: any) => {
                      <Column :span="10" :md="6">
                             <div class="content">
 
-                                   <RmcTree @open="open" :isFetching="isFetching" :error="error" :checkbox="checkbox"
+                                   <RmcTree @reload="reload" @open="open" :isFetching="isFetching" :error="error" :checkbox="checkbox"
                                           :data="folders" />
                             </div>
                      </Column>
